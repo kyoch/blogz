@@ -2,18 +2,20 @@
 
 {% block content %}
     <h1>Add a New Blog</h1>
-    <form method='post'>
-        <label>Title for New Blog</label>
+    <br/>
+    <form action="/newpost", method='POST'>
+        <label>Title for New Blog</label><br>
         <input type="text" name='title' />
         {% if title_error %}
             <h3 class='error'>{{ title_error }}</h3>
         {% endif %}
         <p>
-        <label>Your New Blog Entry</label>
-        <textarea rows="5" columns="30" name='body'>Your text here</textarea>
+        <label>Your New Blog Entry</label><br>
+        <textarea rows="5" columns="50" name='body'></textarea>
         {% if text_error %}
             <h3 class='error'>{{ text_error }}</h3>
-        <p>
+        {% endif %}   
+            <p>
         <input type="submit" value='Add Entry' />
     </form>
 
