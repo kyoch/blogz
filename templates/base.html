@@ -2,18 +2,69 @@
 <html>
     <head>
             <style>
+                    body {
+                        font-family: Arial, Helvetica, sans-serif;            
+                    }
+
+                    h1,h2 {
+                        color:rgb(25, 153, 13);
+                        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    }
+
                     .error {
                         color: red;
                     }
+
+                    ul li {
+                        list-style: none;
+                        display: inline-block;
+                        margin-right: 15px;
+                    }
+
+                    nav ul {
+                        padding: 0;
+                        display: inline-block;
+                    }
+
+                    nav ul li {
+                        list-style: none;
+                        display: inline-block;
+                        margin-right: 15px;
+                    }
+
+                    nav #user-account {
+                        float: right;
+                    }
+
             </style>
         <title>{{title}}</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
 <body>
+<center><h1>Blogz</h1></center>
+<hr>
     <nav>
-        <a href="/blog">Main Blog Page</a> &nbsp; &nbsp; &nbsp;
-        <a href="/newpost">Add a Blog Entry</a>
+        <ul id="user-account">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">All Posts</a></li>
+            <li><a href="/newpost">New Post</a></li>
+        </ul>
     </nav>
+    
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+        {% for category,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+    
     {% block content %}
+
     {% endblock %}
 
 </body>

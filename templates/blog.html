@@ -2,7 +2,7 @@
 
 {% block content %}
         
-    <h1>Build a Blog</h1>
+    <h1>All Blogs</h1>
     
 <!--display added blog entries -->    
 {% if posts|length == 0 %}
@@ -11,7 +11,8 @@
     {% for post in posts %}
         <h2> <a href="/blog?id= {{ post.id }}"> {{post.title}} </a> </h2>
         <p>{{post.body}}</p>
-        <hr />
+        <h5>Posted by:  <a href="/blog?user={{ post.owner_id }}"> {{post.owner.username}} </a> </h5>
+        <br>
     {% endfor %}
 {% endif %}      
     
