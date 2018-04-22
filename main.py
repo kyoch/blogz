@@ -73,17 +73,17 @@ def signup():
         verify = request.form['verify']
 
         # TODO - validate user's data
-        if username.strip() == "" or password.strip() == "" or verify.strip() == "" :
-            flash("Please enter a username and/or password", 'error') 
+        if username.strip() == "" or password.strip() == "" :
+            flash("Please enter a username and/or password.", 'error') 
             return render_template('signup.html') 
 
-        elif password != verify:
-            flash("Passwords do not match")
+        elif password != verify or verify.strip() == "":
+            flash("Passwords do not match.", 'error')
             return render_template('signup.html')
 
         elif len(username) < 3 or len(password) < 3:
-            flash("Either invalid username or invalid password", 'error')
-            return render_template('signup.html')
+            flash("Username and Password must have at least 3 characters.", 'error')
+            return render_template('signup.html', username=username)
 
            
         existing_user = User.query.filter_by(username=username).first()
